@@ -1,0 +1,17 @@
+{
+  "name": "server-mock",
+  "version": "1.0.0",
+  "description": "a mock server for develop.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "mock"
+  ],
+  "author": "weilei",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.0"
+  }
+}
