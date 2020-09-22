@@ -7,9 +7,7 @@ applyMiddlewares(app);
 
 const server = http.createServer(app.callback());
 
-const port = process.env.port || 8085;
+const port = process.env.port || 8086;
 server.listen(port, () => {
 	console.log('server is listening at localhost:' + port);
 });
-
-

@@ -1,9 +1,20 @@
 const router = new require('koa-router')();
+const { extend } = require('../utils.js');
+const mockData = require('../mock/index.js');
 
 module.exports = function(app) {
-	router.get('/', ctx => ctx.body = 'hello world!');
-	router.get('/api/sms-shop-app-cn/staff/allUsers', ctx => {
-		ctx.body = { "code": 0, "message": "³É¹¦", "data": [{ "createTime": null, "nickname": "autel_dQc86iQTrx", "avatar": "", "shopId": "", "roleList": null, "userId": "1277575454325694465", "username": "autel_dQc86iQTrx" }] };
+	// router.get('/', ctx => ctx.body = 'hello world!');
+	mockData.forEach(({ path, method = 'get', data }) => {
+		router[method](path, (ctx, next) => {
+			data = typeof data === 'function'
+				? data(ctx, next, app)
+				: data;
+			ctx.body = {
+				code: 0,
+				message: 'success',
+				data: extend(data)
+			};
+		});
 	});
 	app.use(router.routes())
 		.use(router.allowedMethods());
